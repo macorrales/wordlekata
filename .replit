@@ -1,0 +1,10 @@
+run = ["mvn", "clean", "test"]
+entrypoint = "src/test/java/dojo/AppTest.java"
+
+
+[languages.java]
+pattern = "**/*.java"
+
+
+[nix]
+channel = "stable-21_11"
