@@ -1,5 +1,5 @@
 run = ["mvn", "clean", "test"]
-entrypoint = "src/test/java/dojo/AppTest.java"
+entrypoint = "src/test/java/dojo/WordleTest.java"
 
 
 [languages.java]
