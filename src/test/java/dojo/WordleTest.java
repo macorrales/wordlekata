@@ -18,4 +18,13 @@ public class WordleTest
     {
         assertEquals(".....",new Wordle("HELLO").guess("cigar"));
     }
+
+    @Test
+    public void aCharacterMatches(){
+        assertEquals("A....",new Wordle("aaaaa").guess("abbbb"));
+        assertEquals(".A...",new Wordle("aaaaa").guess("babbb"));
+        assertEquals("..A..",new Wordle("aaaaa").guess("bbabb"));
+        assertEquals("...A.",new Wordle("aaaaa").guess("bbbab"));
+        assertEquals("....A",new Wordle("aaaaa").guess("bbbba"));
+    }
 }
