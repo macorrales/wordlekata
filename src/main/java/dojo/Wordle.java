@@ -1,5 +1,6 @@
 package dojo;
 
+import java.util.Locale;
 import java.util.stream.IntStream;
 
 /**
@@ -19,11 +20,20 @@ public class Wordle {
             char letter = guess.charAt(i);
             if (letter == word.charAt(i)) {
                 feedback.setCharAt(i,Character.toUpperCase(letter));
+                if (countLetter(feedback.toString(),letter)>=countLetter(word,letter)){
+                    feedback.setCharAt(feedback.indexOf(Character.toString(letter)),'.');
+                }
             } else if (word.contains(Character.toString(letter))){
-                feedback.setCharAt(i, letter);
+                if (countLetter(feedback.toString().toLowerCase(),letter)<countLetter(word.toLowerCase(),letter)){
+                    feedback.setCharAt(i, letter);
+                }
             }
         });
 
         return feedback.toString();
+    }
+
+    private long countLetter(String s, final char c){
+        return s.chars().filter(ch -> ch == c).count();
     }
 }
