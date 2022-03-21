@@ -5,7 +5,7 @@ Wordle is a guessing game where the player attempts to guess a word in a maximun
 
 ## Rules
 * Player has six attempts
-* Only real English words are valid
+* Only real English words which are exactly five letters long are valid
 * If the guess is correct then wordle retunrs the word in upper case, ie: `HELLO`
 * If the word is illegal (not found in dictionary) response is `#####`, and does not count as a valid attempt.
 * If there were six valid attempts already (so from seventh onwards) response is "@@@@@"
