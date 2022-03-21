@@ -1,6 +1,5 @@
 package dojo;
 
-import java.util.Locale;
 import java.util.stream.IntStream;
 
 /**
@@ -13,11 +12,15 @@ public class Wordle {
         this.word = word.toLowerCase();
     }
 
-    public String guess(String guess) {
+    public String guess(String guessWord) {
+        var guess = guessWord.toLowerCase();
         StringBuilder feedback = new StringBuilder(".....");
         IntStream.range(0, 5).forEach(i -> {
-            if (guess.charAt(i) == word.charAt(i)) {
-                feedback.setCharAt(i,word.toUpperCase().charAt(i));
+            char letter = guess.charAt(i);
+            if (letter == word.charAt(i)) {
+                feedback.setCharAt(i,Character.toUpperCase(letter));
+            } else if (word.contains(Character.toString(letter))){
+                feedback.setCharAt(i, letter);
             }
         });
 
