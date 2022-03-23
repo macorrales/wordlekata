@@ -20,33 +20,34 @@ Wordle is a guessing game where the player attempts to guess a word in a maximun
 
 ### Implement the following test cases for feedback logic
 
-|Description|Wordle|Guess|Feedback|
-|---|---|---|---|
-|Nothing matches|||
-||aaaaa|bbbbb|.....|
-|One direct match|||
-||aaaaa|abbbb|A....|
-||aaaaa|babbb|.A...|
-||aaaaa|bbabb|..A..|
-||aaaaa|bbbab|...A.|
-||aaaaa|bbbba|....A|
-|One indirect match|||
-||abbbb|caccc|.a...|
-||abbbb|ccacc|..a..|
-||abbbb|cccac|...a.|
-||abbbb|cccca|....a|
-|Combinations||||
-||abbbb|accca|A....|
-||abbbb|accaa|A....|
-||aabbb|accaa|A..a.|
-||aabbb|aacaa|AA...|
-||aabbb|cccaa|...aa|
-||bbabb|aaaaa|..A..|
-||aaabb|ccaaa|..Aaa|
-||bbaaa|aaaaa|aaA..|
-|Full match|||
-||aaaaa|aaaaa|AAAAA|
-||bravo|bravo|BRAVO|
+| Description        |Wordle|Guess|Feedback|
+|--------------------|---|---|---|
+| Nothing matches    | | |
+|                    |aaaaa|bbbbb|.....|
+| One direct match   | | |
+| | aaaaa              |abbbb|A....|
+| | aaaaa              |babbb|.A...|
+| | aaaaa              |bbabb|..A..|
+| | aaaaa              |bbbab|...A.|
+| | aaaaa              |bbbba|....A|
+| One indirect match | | |
+| | abbbb              |caccc|.a...|
+| | abbbb              |ccacc|..a..|
+| | abbbb              |cccac|...a.|
+| | abbbb              |cccca|....a|
+| Combinations       | | | |
+| | abbbb              |accca|A....|
+| | abbbb              |accaa|A....|
+| | aabbb              |accaa|A..a.|
+| | aabbb              |aacaa|AA...|
+| | aabbb              |cccaa|...aa|
+| | bbabb              |aaaaa|..A..|
+| | aaabb              |ccaaa|..Aaa|
+| | bbaaa              |aaaaa|aaA..|
+| Full match         | | |
+| | aaaaa              |aaaaa|AAAAA|
+| | bravo              |bravo|BRAVO|
+
 
 ### Implement remaining of rules
 * Only valid words from dictionary
