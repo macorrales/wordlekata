@@ -20,6 +20,8 @@ public class Wordle {
         guessChars.forEachWithIndex((letter, i) -> {
             if (characterMatchesAt(i, guess)) {
                 feedback.setCharAt(i, directMatch(i));
+            } else if (word.contains(Character.toString(letter))) {
+                feedback.setCharAt(i,letter);
             }
         });
         return feedback.toString();

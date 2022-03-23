@@ -34,4 +34,16 @@ public class WordleTest {
     public void when_anyLetterIsADirectMatch_expect_responseIsLetterInUppercase(String wordle, String guess, String feedback) {
         assertEquals(feedback, new Wordle(wordle).guess(guess));
     }
+
+    @ParameterizedTest
+    @CsvSource(delimiter = '|',textBlock = """
+            abbbb|caccc|.a...|           
+            abbbb|ccacc|..a..|
+            abbbb|cccac|...a.|
+            abbbb|cccca|....a|             
+            bbbba|acccc|a....|             
+            """)
+    public void when_anyLetterIsIndirectMatch_expect_responseThatLetterIsLowercase(String wordle, String guess, String feedback) {
+        assertEquals(feedback, new Wordle(wordle).guess(guess));
+    }
 }
