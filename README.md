@@ -35,6 +35,7 @@ Wordle is a guessing game where the player attempts to guess a word in a maximun
 | | abbbb              |ccacc|..a..|
 | | abbbb              |cccac|...a.|
 | | abbbb              |cccca|....a|
+| | bbbba              |acccc|a....|
 | Combinations       | | | |
 | | abbbb              |accca|A....|
 | | abbbb              |accaa|A....|
