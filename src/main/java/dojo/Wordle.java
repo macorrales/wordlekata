@@ -1,6 +1,6 @@
 package dojo;
 
-import java.util.Locale;
+import org.eclipse.collections.impl.factory.Strings;
 
 /**
  * A Wordle engine
@@ -11,23 +11,25 @@ public class Wordle {
     public Wordle(String word) {
         this.word = word.toLowerCase();
     }
-    
-   public String guess(String guess){
 
+    public String guess(String guess) {
+
+        var guessChars = Strings.asChars(guess);
         var feedback = new StringBuilder(".....");
-        for (int i=0;i<word.length();i++){
-            if (characterMatchesAt(i,guess)){
-                feedback.setCharAt(i,directMatch(i));
-            }
-        }
-        return  feedback.toString();
-   }
 
-    private char directMatch(int pos){
+        guessChars.forEachWithIndex((letter, i) -> {
+            if (characterMatchesAt(i, guess)) {
+                feedback.setCharAt(i, directMatch(i));
+            }
+        });
+        return feedback.toString();
+    }
+
+    private char directMatch(int pos) {
         return Character.toUpperCase(word.charAt(pos));
     }
 
-    private boolean characterMatchesAt(int pos,String guess){
-        return guess.charAt(pos)==word.charAt(pos);
+    private boolean characterMatchesAt(int pos, String guess) {
+        return guess.charAt(pos) == word.charAt(pos);
     }
 }
