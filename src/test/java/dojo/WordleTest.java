@@ -23,7 +23,6 @@ public class WordleTest {
         assertEquals(".....", new Wordle("HELLO").guess("xxxxx"));
     }
 
-
     @ParameterizedTest
     @CsvSource(delimiter = '|', textBlock = """
             aaaaa|abbbb|A....|
