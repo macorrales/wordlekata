@@ -32,9 +32,34 @@ public class WordleTest
             aaaaa|bbabb|..A..|
             aaaaa|bbbab|...A.|
             aaaaa|bbbba|....A|
+            aaaaa|abbba|A...A|
                """
               )
-    public void when_thereIsADirectMatchOnAny_expect_thatLetterInUppercase(
+    public void when_thereIsADirectMatchCombo_expect_thatComboInUppercase(
+        String wordle, String guess, String feedback){
+           assertEquals(feedback,new Wordle(wordle).guess(guess));
+    }
+
+    @ParameterizedTest()
+    @CsvSource(delimiter= '|',textBlock="""
+            abbbb|caccc|.a...|
+            abbbb|ccacc|..a..
+            abbbb|cccac|...a.
+            abbbb|cccca|....a
+            bbbba|acccc|a....
+               """
+              )
+    public void when_thereIsAnIndirectMatchCombo_expect_thatComboInLowercase(
+        String wordle, String guess, String feedback){
+           assertEquals(feedback,new Wordle(wordle).guess(guess));
+    }
+
+    @ParameterizedTest()
+    @CsvSource(delimiter= '|',textBlock="""
+            	abbbb|cccaa|...a.
+               """
+              )
+    public void when_thereIsAnIndirectMatchCombo_expect_thatComboInLowercase2(
         String wordle, String guess, String feedback){
            assertEquals(feedback,new Wordle(wordle).guess(guess));
     }
