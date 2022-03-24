@@ -18,4 +18,14 @@ public class WordleTest
         assertTrue(true);
         
     }
+
+    @Test
+    public void when_nothingMatches_expect_5dots(){
+        assertEquals(".....",new Wordle("aaaaa").guess("bbbbb"));
+    }
+
+    @Test 
+    public void when_thereIsADirectMatch_expect_thatLetterInUppercase(){
+           assertEquals("A....",new Wordle("aaaaa").guess("abbbb"));
+    }
 }
