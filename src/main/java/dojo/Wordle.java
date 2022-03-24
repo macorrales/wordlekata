@@ -1,6 +1,5 @@
 package dojo;
 
-import java.util.Locale;
 
 /**
  * A Wordle engine
@@ -20,10 +19,6 @@ public class Wordle {
             } else {
                 result += ".";    
             }
-                // return Character.toUpperCase(guess.charAt(0))+"....";
-            // } else if (guess.charAt(1)==word.charAt(1)){
-                // return "." + Character.toUpperCase(guess.charAt(1))+"...";
-            // }
         }
         return result;
     }

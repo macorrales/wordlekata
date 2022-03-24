@@ -1,11 +1,15 @@
 package dojo;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
 
 /**
  * Unit test for simple App.
@@ -16,21 +20,25 @@ public class WordleTest
     public void shouldAlwaysPass()
     {
         assertTrue(true);
-        
     }
 
     @Test
     public void when_nothingMatches_expect_5dots(){
         assertEquals(".....",new Wordle("aaaaa").guess("bbbbb"));
     }
-
-    @Test 
-    public void when_thereIsADirectMatch_expect_thatLetterInUppercase(){
-           assertEquals("A....",new Wordle("aaaaa").guess("abbbb"));
+    
+    @ParameterizedTest()
+    @CsvSource(delimiter= '|',textBlock="""
+            aaaaa|abbbb|A....|
+            aaaaa|babbb|.A...|
+            aaaaa|bbabb|..A..|
+            aaaaa|bbbab|...A.|
+            aaaaa|bbbba|....A|
+               """
+              )
+    public void when_thereIsADirectMatchOnAny_expect_thatLetterInUppercase(
+        String wordle, String guess, String feedback){
+           assertEquals(feedback,new Wordle(wordle).guess(guess));
     }
 
-    @Test 
-    public void when_thereIsADirectMatchOnChar2_expect_thatLetterInUppercase(){
-           assertEquals(".A...",new Wordle("aaaaa").guess("babbb"));
-    }
 }
