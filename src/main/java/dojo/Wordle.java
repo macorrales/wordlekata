@@ -12,14 +12,13 @@ public class Wordle {
     }
 
     public String guess(String guess){
-        String result = "";
+        var feedback = new StringBuilder(".....");
+        
         for(int i = 0; i < word.length(); i++) {      
             if (guess.charAt(i)==word.charAt(i)){
-                result += Character.toUpperCase(guess.charAt(i));
-            } else {
-                result += ".";    
-            }
+               feedback.setCharAt(i,Character.toUpperCase(guess.charAt(i)));
+            } 
         }
-        return result;
+        return feedback.toString();
     }
 }

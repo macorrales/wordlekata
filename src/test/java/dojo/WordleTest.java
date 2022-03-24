@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
-
 /**
  * Unit test for simple App.
  */
@@ -40,5 +38,4 @@ public class WordleTest
         String wordle, String guess, String feedback){
            assertEquals(feedback,new Wordle(wordle).guess(guess));
     }
-
 }
