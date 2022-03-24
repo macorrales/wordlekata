@@ -28,4 +28,9 @@ public class WordleTest
     public void when_thereIsADirectMatch_expect_thatLetterInUppercase(){
            assertEquals("A....",new Wordle("aaaaa").guess("abbbb"));
     }
+
+    @Test 
+    public void when_thereIsADirectMatchOnChar2_expect_thatLetterInUppercase(){
+           assertEquals(".A...",new Wordle("aaaaa").guess("babbb"));
+    }
 }
