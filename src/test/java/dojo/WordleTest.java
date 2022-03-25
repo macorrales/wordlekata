@@ -36,7 +36,7 @@ public class WordleTest {
     }
 
     @ParameterizedTest
-    @CsvSource(delimiter = '|',textBlock = """
+    @CsvSource(delimiter = '|', textBlock = """
             abbbb|caccc|.a...|           
             abbbb|ccacc|..a..|
             abbbb|cccac|...a.|
@@ -46,4 +46,24 @@ public class WordleTest {
     public void when_anyLetterIsIndirectMatch_expect_responseThatLetterIsLowercase(String wordle, String guess, String feedback) {
         assertEquals(feedback, new Wordle(wordle).guess(guess));
     }
+
+    @ParameterizedTest
+    @CsvSource(delimiter = '|', textBlock = """
+            abbbb|accca|A....|
+            abbbb|accaa|A....
+            aabbb|accaa|A..a.|
+            aabbb|aacaa|AA...|
+            aabbb|cccaa|...aa|
+            bbabb|aaaaa|..A..|
+            aaabb|ccaaa|..Aaa|
+            bbaaa|aaacc|aaA..|                
+            """)
+    public void when_cornerCase_expect_rightResponse(String wordle, String guess, String feedback) {
+        assertEquals(feedback, new Wordle(wordle).guess(guess));
+    }
+
+    /*
+
+     */
+
 }

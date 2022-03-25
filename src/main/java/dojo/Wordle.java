@@ -2,6 +2,8 @@ package dojo;
 
 import org.eclipse.collections.impl.factory.Strings;
 
+import java.util.Locale;
+
 /**
  * A Wordle engine
  */
@@ -20,11 +22,22 @@ public class Wordle {
         guessChars.forEachWithIndex((letter, i) -> {
             if (characterMatchesAt(i, guess)) {
                 feedback.setCharAt(i, directMatch(i));
+                if (countLetters(feedback.toString().toLowerCase(), letter) > countLetters(word, letter)) {
+                    feedback.setCharAt(feedback.indexOf(letter + ""), '.');
+                }
             } else if (word.contains(Character.toString(letter))) {
-                feedback.setCharAt(i,letter);
+                if (countLetters(feedback.toString().toLowerCase(Locale.ROOT), letter) <
+                        countLetters(word, letter)
+                ) {
+                    feedback.setCharAt(i, letter);
+                }
             }
         });
         return feedback.toString();
+    }
+
+    private long countLetters(String s, char c) {
+        return s.chars().filter(ch -> ch == c).count();
     }
 
     private char directMatch(int pos) {
