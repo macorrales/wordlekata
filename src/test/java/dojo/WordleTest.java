@@ -67,8 +67,4 @@ public class WordleTest
         String wordle, String guess, String feedback){
            assertEquals(feedback,new Wordle(wordle).guess(guess));
     }
-                // bbabb|aaaaa|..A..
-                // aaabb|ccaaa|..Aaa
-                // bbaaa|aaaaa|aaA..
-
 }
