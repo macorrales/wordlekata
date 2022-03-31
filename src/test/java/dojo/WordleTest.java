@@ -57,10 +57,18 @@ public class WordleTest
     @ParameterizedTest()
     @CsvSource(delimiter= '|',textBlock="""
             	abbbb|cccaa|...a.
+                abbbb|accca|A....
+                aabbb|accaa|A..a.
+                aabbb|aacaa|AA...
+                aabbb|cccaa|...aa
                """
               )
     public void when_thereIsAnIndirectMatchCombo_expect_thatComboInLowercase2(
         String wordle, String guess, String feedback){
            assertEquals(feedback,new Wordle(wordle).guess(guess));
     }
+                // bbabb|aaaaa|..A..
+                // aaabb|ccaaa|..Aaa
+                // bbaaa|aaaaa|aaA..
+
 }

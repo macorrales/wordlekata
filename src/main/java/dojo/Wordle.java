@@ -1,29 +1,42 @@
 package dojo;
 
-
 /**
  * A Wordle engine
  * test Git repo
  */
 public class Wordle {
-    private final String word;
+    private Word word;
+    private StringBuilder feedback;
 
     public Wordle(String word) {
-        this.word = word.toLowerCase();
+        this.word = new Word(word);
     }
+    
+    // public
+    public String guess(String guess) {
+        this.feedback = new StringBuilder(".....");
+        this.word.init();
 
-    public String guess(String guess){
-        var feedback = new StringBuilder(".....");
-        var wordMutable = new StringBuilder(this.word);
-      
-        for(int i = 0; i < word.length(); i++) {      
-            if (guess.charAt(i)==word.charAt(i)){
-               feedback.setCharAt(i,Character.toUpperCase(guess.charAt(i)));
-            } else if (wordMutable.toString().contains(guess.charAt(i) + "")) {
-                feedback.setCharAt(i,Character.toLowerCase(guess.charAt(i)));
-                wordMutable.setCharAt(wordMutable.toString().indexOf(guess.charAt(i)),'*');
+        for(int i = 0; i < word.toString().length(); i++) {
+            char guessedChar = guess.charAt(i);
+            
+            if (this.word.isDirectMatch(i, guessedChar)) {
+                changeFeedbackForDirectMatch(guessedChar, i);
+                this.word.markGuessedCharacter(guessedChar);
+            } else if (this.word.isIndirectMatch(guessedChar)) {
+                changeFeedbackForIndirectMatch(guessedChar, i);
+                this.word.markGuessedCharacter(guessedChar);
             }
         }
         return feedback.toString();
+    }
+    
+    private void changeFeedbackForDirectMatch(char guessedChar, int index) {
+        this.feedback.setCharAt(index, Character.toUpperCase(guessedChar));
+    }
+
+    
+    private void changeFeedbackForIndirectMatch(char guessedChar, int index) {
+        this.feedback.setCharAt(index, Character.toLowerCase(guessedChar));
     }
 }
