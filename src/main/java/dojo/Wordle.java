@@ -3,6 +3,7 @@ package dojo;
 
 /**
  * A Wordle engine
+ * test Git repo
  */
 public class Wordle {
     private final String word;
