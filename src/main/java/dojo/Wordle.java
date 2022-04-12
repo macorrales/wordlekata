@@ -16,14 +16,21 @@ public class Wordle {
     public String guess(String guess) {
         this.feedback = new StringBuilder(".....");
         this.word.init();
+        StringBuilder guessMutable = new StringBuilder(guess);
 
         for(int i = 0; i < word.toString().length(); i++) {
-            char guessedChar = guess.charAt(i);
+            char guessedChar = guessMutable.toString().charAt(i);
             
             if (this.word.isDirectMatch(i, guessedChar)) {
                 changeFeedbackForDirectMatch(guessedChar, i);
                 this.word.markGuessedCharacter(guessedChar);
-            } else if (this.word.isIndirectMatch(guessedChar)) {
+                guessMutable.setCharAt(i, '#');
+            }
+        }
+
+        for(int i = 0; i < word.toString().length(); i++) {  
+           char guessedChar = guessMutable.toString().charAt(i);
+            if (this.word.isIndirectMatch(guessedChar)) {
                 changeFeedbackForIndirectMatch(guessedChar, i);
                 this.word.markGuessedCharacter(guessedChar);
             }

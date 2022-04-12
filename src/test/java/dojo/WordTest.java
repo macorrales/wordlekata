@@ -21,4 +21,5 @@ public class WordTest
     {
         assertEquals("word", new Word("word").toString());    
     }
+
 }

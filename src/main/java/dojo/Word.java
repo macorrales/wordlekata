@@ -25,11 +25,22 @@ public class Word {
         return guessedChar == this.word.charAt(index);
     }
 
-    
+    // return index of indirect match rather than boolean
     public boolean isIndirectMatch(char guessedChar) {
       return this.wordMutable.toString().contains(Character.toString(guessedChar));
     }
 
+    // wordle ababb
+    // guess  cbaab
+    //        .
+    //        .B
+    //        a*abb
+    //        .BA
+    //        **abb
+
+    // wordle bbabb
+    // guess  ababb
+    //        a....
     public void markGuessedCharacter(char guessedChar) {
         this.wordMutable.setCharAt(this.wordMutable.toString().indexOf(guessedChar),'*');
     }

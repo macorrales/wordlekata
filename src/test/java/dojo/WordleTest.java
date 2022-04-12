@@ -61,6 +61,10 @@ public class WordleTest
                 aabbb|accaa|A..a.
                 aabbb|aacaa|AA...
                 aabbb|cccaa|...aa
+                aaabb|ccaaa|..Aaa
+                bbabb|aaaaa|..A..
+                bbaaa|aaacc|aaA..
+                ababb|caaac|.aA..
                """
               )
     public void when_thereIsAnIndirectMatchCombo_expect_thatComboInLowercase2(
