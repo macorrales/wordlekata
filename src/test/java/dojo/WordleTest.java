@@ -64,6 +64,7 @@ public class WordleTest
                 aaabb|ccaaa|..Aaa
                 bbabb|aaaaa|..A..
                 bbaaa|aaacc|aaA..
+                bbaaa|aaaaa|..AAA
                 ababb|caaac|.aA..
                """
               )
