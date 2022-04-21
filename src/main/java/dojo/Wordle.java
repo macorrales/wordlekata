@@ -40,24 +40,42 @@ class Wordle {
             return TOO_MANY_TRIES;
         }
 
-        for(int i = 0; i < word.toString().length(); i++) {
+        
+        findDirectMatch(guessMutable);        
+        findIndirectMatch(guessMutable);
+        
+        return feedback.toString();
+    }
+
+    private void findDirectMatch(StringBuilder guessMutable) {
+        for(int i = 0; i < word.toString().length(); i++) {  
             char guessedChar = guessMutable.toString().charAt(i);
             
             if (this.word.isDirectMatch(i, guessedChar)) {
-                changeFeedbackForDirectMatch(guessedChar, i);
-                this.word.markGuessedCharacter(guessedChar);
-                guessMutable.setCharAt(i, '#');
+                handleDirectMatch(i,guessedChar,guessMutable);
             }
+           
         }
+    }
 
+    private void findIndirectMatch(StringBuilder guessMutable) {
         for(int i = 0; i < word.toString().length(); i++) {  
            char guessedChar = guessMutable.toString().charAt(i);
             if (this.word.isIndirectMatch(guessedChar)) {
-                changeFeedbackForIndirectMatch(guessedChar, i);
-                this.word.markGuessedCharacter(guessedChar);
+                handleIndirectMatch(i,guessedChar);
             }
         }
-        return feedback.toString();
+    }
+
+    private void handleIndirectMatch(int i,char guessedChar) {
+        changeFeedbackForIndirectMatch(guessedChar, i);
+        this.word.markGuessedCharacter(guessedChar);
+    }
+
+    private void handleDirectMatch(int i,char guessedChar,StringBuilder guessMutable){
+        changeFeedbackForDirectMatch(guessedChar, i);
+        this.word.markGuessedCharacter(guessedChar);
+        guessMutable.setCharAt(i, '#');
     }
     
     private void changeFeedbackForDirectMatch(char guessedChar, int index) {
