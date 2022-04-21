@@ -1,4 +1,5 @@
 package dojo;
+import java.util.List;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -14,6 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class WordleTest
 {
+    public static final String NOT_IN_DICTIONARY = "#####";
+    
     @Test
     public void shouldAlwaysPass()
     {
@@ -72,4 +75,48 @@ public class WordleTest
         String wordle, String guess, String feedback){
            assertEquals(feedback,new Wordle(wordle).guess(guess));
     }
+
+    @Test
+    public void when_seventhAttemptIsMade_expect_feedbackToBe_allAT(){
+        var myWordle = new Wordle("HELLO");
+        
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals(".....",myWordle.guess("aaaaa"));        
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals("@@@@@",myWordle.guess("aaaaa"));
+    }
+
+        @Test
+    public void when_InvalidAttemptsAreMade_TheyShouldNotBeCountedForMaxAttempt(){
+        var myWordle = new Wordle("HELLO", List.of("AAAAA"));
+        
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals(".....",myWordle.guess("aaaaa"));        
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals(NOT_IN_DICTIONARY,myWordle.guess("World"));
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals(".....",myWordle.guess("aaaaa"));
+        assertEquals("@@@@@",myWordle.guess("aaaaa"));
+    }
+    
+    @Test
+    public void when_when_guessNotInWordList_expect_fiveOctothorpes_expect_fiveOctothorpes() {
+        assertEquals(NOT_IN_DICTIONARY, new Wordle("HELLO", List.of("TRAIN")).guess("HELLO"));
+    }
+
+    @Test
+    public void when_guessNotInWordList_expect_fiveOctothorpes() {
+        assertEquals(NOT_IN_DICTIONARY, new Wordle("HELLO", List.of("TRAIN")).guess("WORLD"));
+    }
+
+    @Test
+    public void when_guessIsInWorldlist_expect_checkToBeCaseInsensitive() {
+        assertEquals(".....", new Wordle("HELLO", List.of("TRAIN")).guess("train"));
+    }
+
+
 }
